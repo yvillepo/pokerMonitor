@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,28 +25,40 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    card.cpp \
+    enregistreur.cpp \
     hand.cpp \
     hand_view.cpp \
+    imagereader.cpp \
     lecteur.cpp \
         main.cpp \
         mainwindow.cpp \
-    range.cpp \
     range_view.cpp \
+    rangeview.cpp \
     read_history.cpp \
     reader.cpp \
+    scan_hand.cpp \
+    screen.cpp \
     sql.cpp \
-    util.cpp
+    util.cpp \
+    range.cpp
 
 HEADERS += \
     SQL.h \
+    card.h \
+    enregistreur.h \
     hand.h \
     hand_view.h \
+    imagereader.h \
     lecteur.h \
     mainwindow.h \
     range.h \
     range_view.h \
+    rangeview.h \
     read_history.h \
     reader.h \
+    scan_hand.h \
+    screen.h \
     util.h
 
 FORMS += \
@@ -63,7 +75,8 @@ DISTFILES += \
     hand_hystory_example_pokerstars.txt \
     hand_hystory_example_winamax \
     script_sql \
-    testpoker.db
+    testpoker.db \
+    img/*
 
 RESOURCES += \
     image.qrc

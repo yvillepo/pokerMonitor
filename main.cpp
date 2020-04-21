@@ -13,17 +13,20 @@
 #include <QPixmap>
 #include <QScreen>
 #include <QWidget>
+#include "screen.h"
+#include "scan_hand.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
    // Sql     sql("/Users/yann/dbpoker/testpoker.db");
     //read_history("/Users/yann/Library/Application Support/PokerStarsFR/HandHistory/Luckers712/", &sql);
-    reader r(str_liste_hands("/Users/yann/dbpoker/hand_hystory_example_pokerstars.txt").at(0));
-    QScreen qscreen(QPlatformScreen);
-    QPixmap originalPixmap = qscreen.grabWindow( QWidget::winId() ,QApplication::desktop()->winId(),00,00,1440,900);
-    QLabel lscreen;
-    lscreen.setPixmap(originalPixmap);
-    lscreen.show();
+//    reader r(str_liste_hands("/Users/yann/dbpoker/hand_hystory_example_pokerstars.txt").at(0));
+
+    Screenshot screenshot;
+ //   screenshot.move(screenshot.screen()->availableGeometry().topLeft() + QPoint(20, 20));
+    screenshot.show();
+
 
 //    MainWindow w;
 //    w.show();

@@ -8,22 +8,26 @@
 
 using namespace std;
 
-class range
+class Range
 {
 
 private:
-    QMap<QString, bool> r;
-    QMap<QString, bool> generate_map_range();
+    QMap<QString, bool> range;
     QMap<int, QString> m_seat_player;
 public:
-    range();
-    range(QMap<QString, bool>);
-    range(QString str_range);
+    Range();
+    Range(QMap<QString, bool>);
+    Range(QString str_range);
+    QMap<QString, bool> generate_map_range();
+    void readRange(QString range);
     void afficher(ostream &flux) const;
     void fct(int i);
-    bool test();
+    void affiche();
+private:
+    void readRangeUnit(QString rangeUnit);
+    void readOneHand(QString hand);
 };
 
-ostream& operator<<( ostream &flux, range const& range);
+ostream& operator<<( ostream &flux, Range const& range);
 
 #endif // RANGE_H

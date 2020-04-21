@@ -17,12 +17,11 @@
 #include <QFile>
 #include <QLabel>
 #include <QDebug>
+#include "card.h"
 
 QString         convert_unit(int i);
 QString         convert(int i, int j);
 QStringList     str_liste_hands(QString file, int debut = 0);
-
-enum    e_color {coeur, carreau, trefle, pique, undefined = -1};
 
 typedef struct s_card {
     QString str;
@@ -80,18 +79,19 @@ typedef struct s_card {
     }
     QString    format()
     {
-//        switch(couleur)
-//        {
-//        case e_color::coeur:
-//            return COEUR(str_rang);
-//        case e_color::carreau:
-//            return CARREAU(str_rang);
-//        case e_color::pique:
-//            return PIQUE(str_rang);
-//        case e_color::trefle:
-//            return TREFLE(str_rang);
-//        }
-//        return BIG_WHITE(str_rang);
+        switch(couleur)
+        {
+        case e_color::coeur:
+            return COEUR(str_rang);
+        case e_color::carreau:
+            return CARREAU(str_rang);
+        case e_color::pique:
+            return PIQUE(str_rang);
+        case e_color::trefle:
+            return TREFLE(str_rang);
+        default:
+            return BIG_WHITE(str_rang);
+        }
     }
     void    affiche_card(QLabel *l)
     {
@@ -113,18 +113,19 @@ typedef struct s_card {
     }
     QString    color()
     {
-//        switch(couleur)
-//        {
-//        case e_color::coeur:
-//            return C_COEUR;
-//        case e_color::carreau:
-//            return C_CARREAU;
-//        case e_color::pique:
-//            return C_PIQUE;
-//        case e_color::trefle:
-//            return C_TREFLE;
-//        }
-//        return BIG_WHITE(str_rang);
+        switch(couleur)
+        {
+        case e_color::coeur:
+            return C_COEUR;
+        case e_color::carreau:
+            return C_CARREAU;
+        case e_color::pique:
+            return C_PIQUE;
+        case e_color::trefle:
+            return C_TREFLE;
+        default:
+            return BIG_WHITE(str_rang);
+        }
     }
 
 } card;
