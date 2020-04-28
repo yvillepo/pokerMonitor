@@ -18,10 +18,13 @@
 #include <QLabel>
 #include <QDebug>
 #include "card.h"
+#include <QPoint>
 
 QString         convert_unit(int i);
 QString         convert(int i, int j);
 QStringList     str_liste_hands(QString file, int debut = 0);
+QString         toStrCard(int i, int j);
+QPoint          strCardToCoordonate(QString str);
 
 typedef struct s_card {
     QString str;
@@ -177,5 +180,23 @@ typedef struct s_hand{
     QString getStrHand() {return str_hand;}
     QString getTypeHand() {return str_type_hand;}
 } hand;
+
+typedef enum position {
+    BT,
+    SB,
+    BB,
+    CO,
+    MP,
+    UTG,
+    UTG1,
+    UTG2,
+    UTG3,
+    UTG4,
+    UTG5,
+    UTG6,
+    NULLpos = -1,
+} e_position;
+
+QString    stringPos(e_position pos);
 
 #endif // UTIL_H

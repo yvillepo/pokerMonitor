@@ -2,7 +2,7 @@
 #include "card.h"
 #include <QtDebug>
 
-QMap<QString, bool> Range::generate_map_range()
+QMap<QString, bool> Range::init_range()
 {
     QMap<QString, bool> range =  QMap<QString, bool>();
     QString str;
@@ -12,13 +12,14 @@ QMap<QString, bool> Range::generate_map_range()
             str = j > i ? convert(i, j) + "s" : convert(i, j) + "o";
             if (i == j) str = convert(i, j);
             range[str] = false;
+            tab_range[i - 1][j - 1] = false;
         }
     return range;
 }
 
 Range::Range()
 {
-    range= generate_map_range();
+    range = init_range();
 }
 
 Range::Range(QMap<QString, bool> map)
@@ -28,7 +29,7 @@ Range::Range(QMap<QString, bool> map)
 
 Range::Range(QString str_range) : Range()
 {
-    this->range= QMap<QString, bool>();
+    this->range = QMap<QString, bool>();
     QStringList lstr = str_range.split(',');
 
     for (int i = 0; i < lstr.size() ;i++){
@@ -37,11 +38,18 @@ Range::Range(QString str_range) : Range()
 
 }
 
+void Range::fillRange(QString str)
+{
+    range[str] = true;
+    QPoint pt = strCardToCoordonate(str);
+    tab_range[pt.x()][pt.y()] = true;
+}
+
 void    Range::readRangeUnit(QString strRangeUnit) // dont realy clean but Work perfectly
 {
     if (strRangeUnit.size() == 3 &&
             (strRangeUnit[2] == 'o'  || strRangeUnit[2] == 's')) // type KTo
-        range[strRangeUnit] = true;
+        fillRange(strRangeUnit);
 
     else if(strRangeUnit.size() == 4 && strRangeUnit[3] == '+') // type Q7+
     {
@@ -51,9 +59,9 @@ void    Range::readRangeUnit(QString strRangeUnit) // dont realy clean but Work 
         QString typeCard = QString(strRangeUnit.at(2)); // s | o for suited | offsuit
         for (int i = lowerCard; i < upperCard; i++)
         {
-            range[strUpperCard +
+            fillRange(strUpperCard +
                     QString(Card::convert_int_rang_to_Chart(i)) +
-                    typeCard] = true;
+                    typeCard);
         }
     }
 
@@ -69,14 +77,14 @@ void    Range::readRangeUnit(QString strRangeUnit) // dont realy clean but Work 
         {
             QString strCurrentCard =
                     QString(Card::convert_int_rang_to_Chart(i));
-            range[strFirtCard + strCurrentCard + typeCard] = true;
+            fillRange(strFirtCard + strCurrentCard + typeCard);
         }
     }
 
     else if (strRangeUnit.size() == 2 &&
              strRangeUnit.at(0) == strRangeUnit.at(1)) // type 22 or QQ
     {
-        range[strRangeUnit] = true;
+        fillRange(strRangeUnit);
     }
 
     else if (strRangeUnit.size() == 5 &&
@@ -88,7 +96,7 @@ void    Range::readRangeUnit(QString strRangeUnit) // dont realy clean but Work 
         for (int i = intLowerCard; i <= intUpperCard; i++)
         {
             QString curentCard = Card::convert_int_rang_to_Chart(i);
-            range[curentCard + curentCard] = true;
+            fillRange(curentCard + curentCard);
         }
     }
     else if (strRangeUnit.size() == 3 &&
@@ -99,11 +107,9 @@ void    Range::readRangeUnit(QString strRangeUnit) // dont realy clean but Work 
         for (int i = intLowerCard; i <= 14; i++) // 14 = 'A' (As)
         {
             QString curentCard = Card::convert_int_rang_to_Chart(i);
-            range[curentCard + curentCard] = true;
+            fillRange(curentCard + curentCard);
         }
     }
-
-
 }
 
 void Range::afficher(ostream &flux) const

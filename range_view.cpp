@@ -11,7 +11,7 @@ range_view::range_view(QWidget *parent) :
     ui(new Ui::range_view)
 {
     ui->setupUi(this);
-    this->setFrameShape(QFrame::Box);
+ //   this->setFrameShape(QFrame::Box);
     init();
 }
 

@@ -3,16 +3,13 @@
 
 Card::Card(QString s)
 {
-    if (s.length() != 2)
-    {
-        qDebug() << s << " : not a card";
-        return ;
-    }
-    str         = s;
+    str         = s.left(2);
     char_rank   = s.at(0);
     rank        = convert_char_rang_to_int(char_rank);
     color       = convert_char_color_to_color(s.at(1));
 }
+
+Card::Card() {str = "x"; char_rank = 'x'; rank = 0; color = undefined;}
 
 int Card::convert_char_rang_to_int(QChar c)
 {

@@ -3,13 +3,16 @@
 
 #include <QObject>
 #include <QWidget>
+#include <QGraphicsScene>
+#include "handviewitem.h"
 
-class RangeView : public QObject
+class RangeView : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    RangeView();
-
+    RangeView(QObject *parent = nullptr );
+    QList<HandViewItem*> l_hand_item;
+private:
 };
 
 #endif // RANGEVIEW_H

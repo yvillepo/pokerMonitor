@@ -1,4 +1,4 @@
-#include "reader.h"
+ #include "reader.h"
 
 
 reader::reader(QString str)
@@ -24,9 +24,9 @@ inline e_action read_action(QString str)
 void reader::read_preflop()
 {
     bool est_open = false;
-    e_position_6max pos = SB;
+    e_position pos = SB;
     QString line = l_str_part.at(index++);
-    QMap<e_position_6max, QString> action;
+    QMap<e_position, QString> action;
     preflop.my_hand = hand(line);
     qDebug() << preflop.my_hand.joueur << "  " << preflop.my_hand.type_hand();
     do {

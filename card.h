@@ -14,7 +14,7 @@ private:
     e_color color;
 public:
     Card(QString s);
-    Card(){}
+    Card();
     static int      convert_char_rang_to_int(QChar c);
     static QChar    convert_int_rang_to_Chart(int c);
     static e_color  convert_char_color_to_color(QChar c);

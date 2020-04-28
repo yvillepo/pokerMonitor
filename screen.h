@@ -27,7 +27,7 @@ class Screenshot : public QWidget
 public:
     Screenshot();
     void lancerEnregistrement();
-    QPixmap scan(int x, int y, int width, int height);
+    QImage scan(int x, int y, int width, int height);
     QTimer  *timer;
     int nb_image;
 
@@ -41,12 +41,16 @@ private slots:
     void shootScreen();
     void updateCheckBox();
     void screenAndSave();
+    void readImageFixe();
 
 private:
+    /****************************tmp pr test*************************/
     Enregistreurs   *e;
+    ImageReader     imRead;
+    /****************************************************************/
     void updateScreenshotLabel();
-    void uptdatePosCursor(QMouseEvent *ev);
     QPixmap originalPixmap;
+    QImage  originalImage;
     QPixmap cardPixmap1;
     QPixmap cardPixmap2;
     QImage  lastCardImage1;
@@ -56,14 +60,9 @@ private:
     QLabel *cardLabel1;
     QLabel *cardLabel2;
     QLabel *nbScreenLabel;
-    QLabel *mouseX;
-    QLabel *mouseY;
+
     QLabel  *nbHandLabel;
     QSpinBox *delaySpinBox;
-    QSpinBox *posX;
-    QSpinBox *posY;
-    QSpinBox *sizeX;
-    QSpinBox *sizeY;
     QLineEdit *edtName;
     QLineEdit *nameHandLineEdit;
     QCheckBox *hideThisWindowCheckBox;

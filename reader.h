@@ -11,15 +11,21 @@ typedef enum type3E {
     FAUX = -1,
 } t_3E;
 
-typedef enum position {
-    BT = 6,
-    SB = 1,
-    BB = 2,
-    cut_of = 3,
-    MP = 4,
-    UTG = 5,
-    Nein = 0,
-} e_position_6max;
+//typedef enum position {
+//    BT = 6,
+//    SB = 1,
+//    BB = 2,
+//    cut_of = 3,
+//    MP = 4,
+//    UTG = 5,
+//    UTG1,
+//    UTG2,
+//    UTG3,
+//    UTG4,
+//    UTG5,
+//    UTG6,
+//    Nein = -1,
+//} e_position;
 
 typedef  enum a_name_bien_un_de_ses_Quatre {
     fold,
@@ -49,11 +55,11 @@ class reader
 {
 private:
     QString                     str_game;
-    e_position_6max             my_position;
+    e_position            my_position;
     s_preflop                   preflop;
     int                         index;
     QStringList                 l_str_part;
-    QMap<QString, e_position_6max>   player_postion();
+    QMap<QString, e_position>   player_postion();
     QMap<QString, double>       player_chips();
 
 

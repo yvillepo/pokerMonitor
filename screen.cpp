@@ -1,7 +1,13 @@
 #include <QtWidgets>
 
 #include "screen.h"
+#include "util.h"
 #include <QDebug>
+
+#define POSX 198
+#define POSY 23
+#define SIZEX 1242
+#define SIZEY 877
 
 //! [0]
 
@@ -9,13 +15,14 @@ void Screenshot::lancerEnregistrement()
 {
     timer->start(500);
     connect(timer, &QTimer::timeout, this, &Screenshot::shootScreen);
-    e->show();
+    /***********************$tmp***********************/
+ //   e->show();
+    /***************************************************/
 }
 
 
 Screenshot::Screenshot()
     : screenshotLabel (new QLabel(this)), nbScreenLabel(new QLabel(this)),
-      mouseX(new QLabel(this)), mouseY(new QLabel(this)),
       edtName(new QLineEdit("untilted", this)),
       cardLabel1(new QLabel(this)), cardLabel2(new QLabel(this)),
       nameHandLineEdit(new QLineEdit(this)),
@@ -30,24 +37,12 @@ Screenshot::Screenshot()
     screenshotLabel->setMinimumSize(screenGeometry.width() / 8, screenGeometry.height() / 8);
 
     QHBoxLayout *mainLayout = new QHBoxLayout(this);
-    QVBoxLayout *leftLayout = new QVBoxLayout(this);
+    QVBoxLayout *leftLayout = new QVBoxLayout(/*this*/);
 
     QGroupBox *optionsGroupBox = new QGroupBox(tr("Options"), this);
     delaySpinBox = new QSpinBox(optionsGroupBox);
     delaySpinBox->setSuffix(tr(" s"));
     delaySpinBox->setMaximum(60);
-    posX = new QSpinBox(this);
-    posY = new QSpinBox(this);
-    sizeX = new QSpinBox(this);
-    sizeY = new QSpinBox(this);
-    posX->setMaximum(6000);
-    posY->setMaximum(6000);
-    sizeX->setMaximum(6000);
-    sizeY->setMaximum(6000);
-    posX->setValue(198);
-    posY->setValue(23);
-    sizeX->setValue(1242);
-    sizeY->setValue(877);
 
     connect(delaySpinBox, QOverload<int>::of(&QSpinBox::valueChanged),
             this, &Screenshot::updateCheckBox);
@@ -58,14 +53,8 @@ Screenshot::Screenshot()
     optionsGroupBoxLayout->addWidget(new QLabel(tr("Screenshot Delay:"), this), 0, 0);
     optionsGroupBoxLayout->addWidget(delaySpinBox, 0, 1);
     optionsGroupBoxLayout->addWidget(hideThisWindowCheckBox, 1, 0, 1, 2);
-    optionsGroupBoxLayout->addWidget(posX, 2, 0, 1, 1);
-    optionsGroupBoxLayout->addWidget(posY, 2, 1, 1, 1);
-    optionsGroupBoxLayout->addWidget(sizeX, 2, 2, 1, 1);
-    optionsGroupBoxLayout->addWidget(sizeY, 2, 3, 1, 1);
     optionsGroupBoxLayout->addWidget(edtName, 3, 0, 1, 4);
     optionsGroupBoxLayout->addWidget(new QLabel ("position curseur", this), 4, 0, 1, 2);
-    optionsGroupBoxLayout->addWidget(mouseX, 4, 2);
-    optionsGroupBoxLayout->addWidget(mouseY, 4, 3);
 
     leftLayout->addWidget(optionsGroupBox);
 
@@ -143,39 +132,64 @@ void Screenshot::saveScreenshot()
 //! [4]
 void Screenshot::shootScreen()
 {
-    QScreen *screen = QGuiApplication::primaryScreen();
-//    if (const QWindow *window = windowHandle())
-//        screen = window->screen();
-//    if (!screen)
-//        return;
+        QScreen *screen = QGuiApplication::primaryScreen();
 
+        originalPixmap = screen->grabWindow(0, POSX, POSY, SIZEX, SIZEY);
+    QImage curentCard1 = scan(543 + 8,555 + 10, 77 - (77 - 28) - 2,45 - (45 - 28) - 2);
+    QImage curentCard2 = scan(623 + 8,555 + 10,77 - (77 - 28) - 2,45 - (45 - 28) - 2);
+//    if ((curentCard1 != lastCardImage1 || curentCard2 != lastCardImage2))
+//    {
+//        lastCardImage1 = curentCard1;
+//        lastCardImage2 = curentCard2;
+//        timer->stop();
+//        QTimer::singleShot(150, this, &Screenshot::readImageFixe);
+//    }
+        updateScreenshotLabel();
 
-    int intPosX = posX->value();
-    int intPosY = posY->value();
-    int intSizeX = sizeX->value();
-    int intSizeY = sizeY->value();
-    originalPixmap = screen->grabWindow(0, intPosX, intPosY, intSizeX, intSizeY);
-    cardPixmap1 = originalPixmap.copy(543 + 8,555 + 10, 77 - (77 - 28) - 2,45 - (45 - 28) - 2);
-    cardPixmap2 = originalPixmap.copy(623 + 8,555 + 10,77 - (77 - 28) - 2,45 - (45 - 28) - 2);
-    QImage curentCard1 = cardPixmap1.toImage();
-    QImage curentCard2 = cardPixmap2.toImage();
-    e->addHAnd(curentCard1, curentCard2);
-    if (curentCard1 != lastCardImage1 || curentCard2 != lastCardImage2)
-    {
-        nb_image++;
-        lastCardImage1 = cardPixmap1.toImage();
-        lastCardImage2 = cardPixmap2.toImage();
-    }
-    updateScreenshotLabel();
-
-    newScreenshotButton->setDisabled(false);
-    if (hideThisWindowCheckBox->isChecked())
-        show();
+//    newScreenshotButton->setDisabled(false);
+//    if (hideThisWindowCheckBox->isChecked())
+//        show();
+    imRead.refrechEcran();
+    /*****************************tmp pour test************************/
+           // qDebug() << "hand : " << imRead.readHand().getStrHand() << endl;
+     nbHandLabel->setText(stringPos(imRead.readPosition()) + " : " + imRead.readHand().getStrHand());
+    /******************************************************************/
 }
 
-QPixmap Screenshot::scan(int x, int y, int width, int height)
+void Screenshot::readImageFixe()
 {
-    return originalPixmap.copy(x, y, width, height);
+    QScreen *screen = QGuiApplication::primaryScreen();
+
+    originalPixmap = screen->grabWindow(0, POSX, POSY, SIZEX, SIZEY);
+    QImage utg = scan(676, 230, 1, 1);
+    QImage mp = scan(394, 236, 1, 1);
+    QImage co = scan(258, 416, 1, 1);
+    QImage bt = scan(504, 549, 1, 1);
+    QImage sb = scan(917, 504, 1, 1);
+    QImage bb = scan(978, 300, 1, 1);
+    qDebug() << "utg : " << utg.pixel(0,0) << endl;
+    qDebug() << "mp : " << mp.pixel(0,0) << endl;
+    qDebug() << "bt : " << co.pixel(0,0) << endl;
+    qDebug() << "st : " << bt.pixel(0,0) << endl;
+    qDebug() << "sb : " << sb.pixel(0,0) << endl;
+    qDebug() << "bb : " << bb.pixel(0,0) << endl;
+    QImage newCard1 = scan(543 + 8,555 + 10, 77 - (77 - 28) - 2,45 - (45 - 28) - 2);
+    QImage newCard2  = scan(623 + 8,555 + 10,77 - (77 - 28) - 2,45 - (45 - 28) - 2);
+
+    if ((newCard1 == lastCardImage1 && newCard2 == lastCardImage2))
+    {
+//        if (!imRead.exist(newCard1))
+//            e->addEnr1(newCard1);
+//        if (!imRead.exist(newCard2))
+//            e->addEnr1(newCard2);
+    }
+    timer->start();
+}
+
+QImage Screenshot::scan(int x, int y, int width, int height)
+{
+    QPixmap p = originalPixmap.copy(x, y, width, height);
+    return p.toImage();
 }
 //! [4]
 
@@ -211,11 +225,4 @@ void Screenshot::screenAndSave()
 {
     shootScreen();
     saveScreenshot();
-}
-
-void    Screenshot::uptdatePosCursor(QMouseEvent *event)
-{
-    qDebug() << "global X Y  " << event->globalX() << " " << event->globalY() << endl;
-    mouseX->setText(QString::number(event->globalX()));
-    mouseY->setText(QString::number(event->globalY()));
 }

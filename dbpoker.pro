@@ -29,12 +29,15 @@ SOURCES += \
     enregistreur.cpp \
     hand.cpp \
     hand_view.cpp \
+    handviewitem.cpp \
+    handviewwidget.cpp \
     imagereader.cpp \
     lecteur.cpp \
         main.cpp \
         mainwindow.cpp \
     range_view.cpp \
     rangeview.cpp \
+    rangeviewwidget.cpp \
     read_history.cpp \
     reader.cpp \
     scan_hand.cpp \
@@ -49,12 +52,15 @@ HEADERS += \
     enregistreur.h \
     hand.h \
     hand_view.h \
+    handviewitem.h \
+    handviewwidget.h \
     imagereader.h \
     lecteur.h \
     mainwindow.h \
     range.h \
     range_view.h \
     rangeview.h \
+    rangeviewwidget.h \
     read_history.h \
     reader.h \
     scan_hand.h \

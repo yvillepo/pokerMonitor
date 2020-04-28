@@ -13,7 +13,8 @@
 /************************/
 
 
-class Enr1 : public QWidget
+
+class Enr1 : public QWidget //Affiche une image avec un label pour la sauvegarder
 {
     Q_OBJECT
 public:
@@ -28,7 +29,7 @@ private:
     QImage  im;
 };
 
-class Enregistreurs : public QWidget
+class Enregistreurs : public QWidget //Affiche toutes les image ajouté
 {
     Q_OBJECT
 private:
