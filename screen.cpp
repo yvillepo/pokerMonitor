@@ -16,7 +16,7 @@ void Screenshot::lancerEnregistrement()
     timer->start(500);
     connect(timer, &QTimer::timeout, this, &Screenshot::shootScreen);
     /***********************$tmp***********************/
- //   e->show();
+    e->show();
     /***************************************************/
 }
 
@@ -135,15 +135,17 @@ void Screenshot::shootScreen()
         QScreen *screen = QGuiApplication::primaryScreen();
 
         originalPixmap = screen->grabWindow(0, POSX, POSY, SIZEX, SIZEY);
+        cardPixmap1 = originalPixmap.copy(543 + 8,555 + 10, 77 - (77 - 28) - 2,45 - (45 - 28) - 2);
+        cardPixmap2 = originalPixmap.copy(623 + 8,555 + 10,77 - (77 - 28) - 2,45 - (45 - 28) - 2);
     QImage curentCard1 = scan(543 + 8,555 + 10, 77 - (77 - 28) - 2,45 - (45 - 28) - 2);
     QImage curentCard2 = scan(623 + 8,555 + 10,77 - (77 - 28) - 2,45 - (45 - 28) - 2);
-//    if ((curentCard1 != lastCardImage1 || curentCard2 != lastCardImage2))
-//    {
-//        lastCardImage1 = curentCard1;
-//        lastCardImage2 = curentCard2;
-//        timer->stop();
-//        QTimer::singleShot(150, this, &Screenshot::readImageFixe);
-//    }
+    if ((curentCard1 != lastCardImage1 || curentCard2 != lastCardImage2))
+    {
+        lastCardImage1 = curentCard1;
+        lastCardImage2 = curentCard2;
+        timer->stop();
+        QTimer::singleShot(150, this, &Screenshot::readImageFixe);
+    }
         updateScreenshotLabel();
 
 //    newScreenshotButton->setDisabled(false);
@@ -178,10 +180,10 @@ void Screenshot::readImageFixe()
 
     if ((newCard1 == lastCardImage1 && newCard2 == lastCardImage2))
     {
-//        if (!imRead.exist(newCard1))
-//            e->addEnr1(newCard1);
-//        if (!imRead.exist(newCard2))
-//            e->addEnr1(newCard2);
+        if (!imRead.exist(newCard1))
+            e->addEnr1(newCard1);
+        if (!imRead.exist(newCard2))
+            e->addEnr1(newCard2);
     }
     timer->start();
 }

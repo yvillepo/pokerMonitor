@@ -31,8 +31,19 @@ QString    Hand::type_hand(){
             res += "o";
         return (res);
 }
+bool        Hand::isValid()
+{
+    if (card1.isValid() && card2.isValid())
+        return true;
+    return false;
+}
 
 std::array<Card, 2> Hand::getCard(){
     std::array<Card, 2> res = {card1, card2};
     return res;
+}
+
+bool operator==(Hand const& a, Hand const& b)
+{
+    return (a.card1 == a.card1 && a.card2 == a.card2);
 }

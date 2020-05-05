@@ -182,9 +182,9 @@ typedef struct s_hand{
 } hand;
 
 typedef enum position {
-    BT,
+    BB = 0,
     SB,
-    BB,
+    BT,
     CO,
     MP,
     UTG,

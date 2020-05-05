@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    calcul/calcul.cpp \
     card.cpp \
     enregistreur.cpp \
     hand.cpp \
@@ -48,6 +49,7 @@ SOURCES += \
 
 HEADERS += \
     SQL.h \
+    calcul/calcul.h \
     card.h \
     enregistreur.h \
     hand.h \

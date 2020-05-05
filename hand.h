@@ -20,7 +20,9 @@ public:
     Card                getCard1(){return card1;}
     Card                getCard2(){return card2;}
     std::array<Card, 2> getCard();
-
+    bool                isValid();
 };
+
+bool operator==(Hand const& a, Hand const& b);
 
 #endif // HAND_H

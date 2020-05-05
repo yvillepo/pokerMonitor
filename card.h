@@ -22,6 +22,7 @@ public:
     int             getIntRank() const {return rank;}
     QString         getStrCard() const {return str;}
     e_color         getColor() const {return color;}
+    bool            isValid();
 };
 
 bool operator==(Card const& a, Card const& b);

@@ -70,6 +70,13 @@ e_color Card::convert_char_color_to_color(QChar c)
     }
 }
 
+bool Card::isValid()
+{
+    if (rank != -1 && color != undefined)
+        return true;
+    return false;
+}
+
 bool operator==(Card const& a, Card const& b)
 {
     return (a.getStrCard() == b.getStrCard());

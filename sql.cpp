@@ -49,6 +49,7 @@ QString Sql::hand(int id)
         qDebug() << "Echec d'ouverture de la base de donnée";
         qDebug() << bd.lastError();
     }
+    return "";
 }
 
 
@@ -64,6 +65,7 @@ QSqlQuery        *Sql::select_file_history(QString chemin)
         requete = new QSqlQuery(str_requete.toStdString().c_str());
         return requete;
     }
+    return  new QSqlQuery();
 }
 
 void    Sql::insert_file_history(QString chemin, qint64 taille)

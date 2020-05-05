@@ -42,32 +42,12 @@
     </sizepolicy>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget#centralWidget { background-image:url(:/48173892.jpg) }</string>
+    <string notr="true"/>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="sizeConstraint">
      <enum>QLayout::SetNoConstraint</enum>
     </property>
-    <item>
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>test generation des fichier ui* pour la fenaitre mainwindows ça fonctionne pas putain cassse les couille serieux c'est tj bon  ?? :DD</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -88,7 +68,14 @@
     <addaction name="actionnewPOurTest"/>
     <addaction name="actiontesttesttest"/>
    </widget>
+   <widget class="QMenu" name="menuScanner">
+    <property name="title">
+     <string>Scanner</string>
+    </property>
+    <addaction name="actionDiagnostic"/>
+   </widget>
    <addaction name="menufile"/>
+   <addaction name="menuScanner"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -116,6 +103,11 @@
   <action name="actiontesttesttest">
    <property name="text">
     <string>testtesttest</string>
+   </property>
+  </action>
+  <action name="actionDiagnostic">
+   <property name="text">
+    <string>Diagnostic</string>
    </property>
   </action>
  </widget>

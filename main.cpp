@@ -24,20 +24,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
    // Sql     sql("/Users/yann/dbpoker/testpoker.db");
-    //read_history("/Users/yann/Library/Application Support/PokerStarsFR/HandHistory/Luckers712/", &sql);
-//    reader r(str_liste_hands("/Users/yann/dbpoker/hand_hystory_example_pokerstars.txt").at(0));
-
-    Screenshot screenshot;
-    screenshot.move(screenshot.screen()->availableGeometry().topLeft() + QPoint(20, 20));
-    screenshot.show();
-
-
-//    MainWindow w;
-//    w.show();
-//    Range r("22+,A2s+,K2s+,Q2s+,J5s+,T6s+,96s+,85s+,74s+,64s+,53s+,43s,A2o+,K7o+,Q9o+,J9o+,T8o+,98o,87o");
-//    r.affiche();
-//    RangeViewWidget rv(r);
-//    rv.show();
-//    cout << r.tab_range[0][1] << endl;
+   // read_history("/Users/yann/Library/Application Support/PokerStarsFR/HandHistory/Luckers712/", &sql);
+   // reader r(str_liste_hands("/Users/yann/dbpoker/hand_hystory_example_pokerstars.txt").at(0));
+    MainWindow w;
+    w.show();
     a.exec();
 }
