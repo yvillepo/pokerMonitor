@@ -1,24 +1,40 @@
 #include "handviewwidget.h"
-#include <QPainter>
 
 HandViewWidget::HandViewWidget(QString text, QWidget *parent) :
     QWidget(parent),
     type_hand(text)
 {
     brush = Qt::gray;
+    pen.setColor(Qt::black);
+    penSelect = QPen(Qt::blue, 7);
+    select = false;
 }
 
 void HandViewWidget::paintEvent(QPaintEvent *event)
 {
     QPainter p(this);
-    p.setPen(Qt::black);
     p.setBrush(brush);
-    p.drawRect(0,0,this->width(), this->height());
-    p.drawText(QRectF(0,0, this->width(), this->height()), type_hand, QTextOption(Qt::AlignCenter));
+    p.setPen(select ? penSelect : pen);
+    p.drawRect(0,0,this->width() - 1, this->height() - 1);
+    p.setPen(pen);
+    p.drawText(QRectF(0 ,0, this->width() - 1, this->height() - 1), type_hand, QTextOption(Qt::AlignCenter));
 }
 
-void HandViewWidget::color(const QBrush brush)
+void HandViewWidget::color(const QColor color)
 {
-    this->brush = brush;
-    repaint();
+    this->brush = QBrush(color);
+    update();
+}
+
+void HandViewWidget::colorContour(const QColor color, int width)
+{
+    select = true;
+    penSelect = QPen(color, width);
+    update();
+}
+
+void HandViewWidget::toggleSelect()
+{
+    select = !select;
+    update();
 }
