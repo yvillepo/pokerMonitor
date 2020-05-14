@@ -200,7 +200,7 @@ QImage ImageReader::scan(int x, int y, int width, int height)
 //    return p.toImage();
 }
 
-void ImageReader::start(int time)
+void ImageReader::start(int time) // a revoir
 {
     if (time)
     {

@@ -60,9 +60,9 @@ public:
     QImage          scan(int x, int y, int width, int height);
 public slots:
     void refrechEcran();
-    void start(int time = 0);
+    void start(int time = 1000); // a revoit (t = 0 ? )
     void stop();
-    void            readInfo();
+    void readInfo();
 signals:
     void newHand(Hand newHand, e_position newPosition = NULLpos);
 

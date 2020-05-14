@@ -128,6 +128,13 @@ void Range::afficher(ostream &flux) const
     flux << endl;
 }
 
+bool Range::isTrue(QString type_hand)
+{
+    if (!range.contains(type_hand))
+        return false;
+    return range[type_hand];
+}
+
 ostream& operator<<( ostream &flux, Range const& ra)
 {
     ra.afficher(flux);

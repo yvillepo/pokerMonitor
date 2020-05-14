@@ -20,16 +20,15 @@ public:
     Range();
     Range(QMap<QString, bool>);
     Range(QString str_range);
+    bool                isTrue(QString type_hand);
     QMap<QString, bool> init_range();
-    void readRange(QString range);
-    void afficher(ostream &flux) const;
-    void fct(int i);
-    void affiche();
+    void                readRange(QString range);
+    void                afficher(ostream &flux) const;
+    void                affiche();
     QMap<QString, bool> getRange(){return range;}
 
 private:
     void readRangeUnit(QString rangeUnit);
-    void readOneHand(QString hand);
     void fillRange(QString str);
 };
 

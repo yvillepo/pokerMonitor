@@ -36,6 +36,9 @@ SOURCES += \
     lecteur.cpp \
         main.cpp \
         mainwindow.cpp \
+    mesranges.cpp \
+    myopenrange.cpp \
+    preflophelperwidget.cpp \
     range_view.cpp \
     rangeview.cpp \
     rangeviewwidget.cpp \
@@ -59,6 +62,9 @@ HEADERS += \
     imagereader.h \
     lecteur.h \
     mainwindow.h \
+    mesranges.h \
+    myopenrange.h \
+    preflophelperwidget.h \
     range.h \
     range_view.h \
     rangeview.h \
@@ -84,7 +90,8 @@ DISTFILES += \
     hand_hystory_example_winamax \
     script_sql \
     testpoker.db \
-    img/*
+    img/* \
+    open.txt
 
 RESOURCES += \
     image.qrc

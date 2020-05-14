@@ -1,0 +1,6 @@
+22+,A2s+,K2s+,Q4s+,J7s+,T7s+,97s+,86s+,75s+,64s+,54s,A7o+,K9o+,Q9o+,J9o+,T9o,98o
+22+,A2s+,K2s+,Q2s+,J5s+,T6s+,96s+,85s+,74s+,64s+,53s+,43s,A2o+,K7o+,Q9o+,J9o+,T8o+,98o,87o
+22+,A2s+,K6s+,Q7s+,J8s+,T8s+,97s+,86s+,75s+,64s+,54s,ATo+,KJo+,QJo
+22+,A7s+,A5s,KTs+,QTs+,J9s+,T8s+,97s+,86s+,75s+,65s,54s,ATo+,KQo
+33+,ATs+,KTs+,QTs+,J9s+,T9s,98s,87s,76s,65s,AJo+,KQo
+
