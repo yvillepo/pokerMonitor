@@ -62,7 +62,7 @@ void MainWindow::diagScrandeleted()
 
 void MainWindow::afficheOpenRange()
 {
-    openRange = new myOpenRange("/Users/yann/dbpoker/open.txt");
+    openRange = new myOpenRange(":/open.txt");
     QStackedWidget *stackRange = new QStackedWidget(this);
     QComboBox *openComboBox = new QComboBox(this);
     Range   *current;

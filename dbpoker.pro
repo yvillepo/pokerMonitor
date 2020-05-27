@@ -91,7 +91,8 @@ DISTFILES += \
     script_sql \
     testpoker.db \
     img/* \
-    open.txt
+    open.txt \
+    .gitignores
 
 RESOURCES += \
-    image.qrc
+    data_resources.qrc
