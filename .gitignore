@@ -1,0 +1,4 @@
+*.o
+*.autosave
+.DS_store
+.qmake.stash
