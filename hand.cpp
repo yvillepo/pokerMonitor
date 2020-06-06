@@ -26,9 +26,15 @@ QString    Hand::type_hand(){
         else
             res = QString(card2.getCharRank()) + QString(card1.getCharRank());
         if (card1.getColor() == card2.getColor())
+        {
+            suited = true;
             res += "s";
+        }
         else
+        {
+            suited = false;
             res += "o";
+        }
         return (res);
 }
 bool        Hand::isValid()
@@ -36,6 +42,22 @@ bool        Hand::isValid()
     if (card1.isValid() && card2.isValid())
         return true;
     return false;
+}
+
+QPoint Hand::index()
+{
+    int x = card1.getIntRank() % 14;
+    int y = card2.getIntRank() % 14;
+
+    if (suited)
+        return QPoint(x, y);
+    else
+        return QPoint(x, y);
+}
+
+QPoint Hand::index(Hand h)
+{
+    return h.index();
 }
 
 std::array<Card, 2> Hand::getCard(){

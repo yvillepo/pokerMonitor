@@ -8,7 +8,7 @@ QT       += core gui sql testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = dbpoker
+TARGET = pokerMonitor
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -37,6 +37,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     mesranges.cpp \
+    multirange.cpp \
     myopenrange.cpp \
     preflophelperwidget.cpp \
     range_view.cpp \
@@ -47,6 +48,8 @@ SOURCES += \
     scan_hand.cpp \
     screen.cpp \
     sql.cpp \
+    treeranges.cpp \
+    treerangesmodel.cpp \
     util.cpp \
     range.cpp
 
@@ -63,6 +66,7 @@ HEADERS += \
     lecteur.h \
     mainwindow.h \
     mesranges.h \
+    multirange.h \
     myopenrange.h \
     preflophelperwidget.h \
     range.h \
@@ -73,6 +77,8 @@ HEADERS += \
     reader.h \
     scan_hand.h \
     screen.h \
+    treeranges.h \
+    treerangesmodel.h \
     util.h
 
 FORMS += \

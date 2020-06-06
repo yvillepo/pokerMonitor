@@ -31,7 +31,7 @@ typedef  enum a_name_bien_un_de_ses_Quatre {
     fold,
     check,
     call,
-    raise,
+    tmp_raise,
 }e_action;
 
 typedef struct player_chips {
