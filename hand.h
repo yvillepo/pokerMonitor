@@ -4,11 +4,13 @@
 #include <QString>
 #include "card.h"
 #include "array"
+#include <QPoint>
 
 class Hand
 {
 public:
     QString     str_hand;
+    bool        suited;
     QString     str_type_hand;
     Card        card1;
     Card        card2;
@@ -21,6 +23,8 @@ public:
     Card                getCard2(){return card2;}
     std::array<Card, 2> getCard();
     bool                isValid();
+    QPoint              index();
+    static QPoint       index(Hand h);
 };
 
 bool operator==(Hand const& a, Hand const& b);

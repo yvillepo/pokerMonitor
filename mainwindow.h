@@ -22,8 +22,6 @@ private:
     PreflopHelperWidget *preflopHelper;
     myOpenRange         *openRange;
 
-
-
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     Ui::MainWindow *Get_ui() {return ui;}

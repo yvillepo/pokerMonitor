@@ -7,6 +7,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "treerangesmodel.h"
+#include <QTreeView>
 
 using namespace std;
 
@@ -82,6 +84,15 @@ void MainWindow::afficheOpenRange()
     wOpenRange->setLayout(vbox);
     setCentralWidget(wOpenRange);
     wOpenRange->show();
+
+
+    QDockWidget *dcWidget = new QDockWidget(this);
+
+    TreeRangesModel *tree = new TreeRangesModel();
+    QTreeView *treeView = new QTreeView();
+    treeView->setModel(tree);
+    dcWidget->setWidget(treeView);
+    addDockWidget(Qt::LeftDockWidgetArea ,dcWidget, Qt::Horizontal);
 }
 
 void MainWindow::rangeWhilePlaying()
