@@ -56,7 +56,7 @@
      <x>0</x>
      <y>0</y>
      <width>1073</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
@@ -73,6 +73,7 @@
      <string>Scanner</string>
     </property>
     <addaction name="actionDiagnostic"/>
+    <addaction name="actionDiag_Bet"/>
    </widget>
    <widget class="QMenu" name="menuaffihce">
     <property name="title">
@@ -132,6 +133,11 @@
   <action name="actionrange_2">
    <property name="text">
     <string>range</string>
+   </property>
+  </action>
+  <action name="actionDiag_Bet">
+   <property name="text">
+    <string>Diag Bet</string>
    </property>
   </action>
  </widget>

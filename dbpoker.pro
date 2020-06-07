@@ -27,7 +27,9 @@ CONFIG += c++11
 SOURCES += \
     calcul/calcul.cpp \
     card.cpp \
+    diagreadbet.cpp \
     enregistreur.cpp \
+    form.cpp \
     hand.cpp \
     hand_view.cpp \
     handviewitem.cpp \
@@ -57,7 +59,9 @@ HEADERS += \
     SQL.h \
     calcul/calcul.h \
     card.h \
+    diagreadbet.h \
     enregistreur.h \
+    form.h \
     hand.h \
     hand_view.h \
     handviewitem.h \
@@ -82,6 +86,8 @@ HEADERS += \
     util.h
 
 FORMS += \
+        diagreadbet.ui \
+        form.ui \
         lecteur.ui \
         mainwindow.ui \
         range_view.ui

@@ -31,6 +31,7 @@ public:
     QAction *actionDiagnostic;
     QAction *actionopenRange;
     QAction *actionrange_2;
+    QAction *actionDiag_Bet;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QMenuBar *menuBar;
@@ -67,6 +68,8 @@ public:
         actionopenRange->setObjectName(QString::fromUtf8("actionopenRange"));
         actionrange_2 = new QAction(MainWindow);
         actionrange_2->setObjectName(QString::fromUtf8("actionrange_2"));
+        actionDiag_Bet = new QAction(MainWindow);
+        actionDiag_Bet->setObjectName(QString::fromUtf8("actionDiag_Bet"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -83,7 +86,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1073, 22));
+        menuBar->setGeometry(QRect(0, 0, 1073, 21));
         menufile = new QMenu(menuBar);
         menufile->setObjectName(QString::fromUtf8("menufile"));
         menuScanner = new QMenu(menuBar);
@@ -106,6 +109,7 @@ public:
         menufile->addAction(actionnewPOurTest);
         menufile->addAction(actiontesttesttest);
         menuScanner->addAction(actionDiagnostic);
+        menuScanner->addAction(actionDiag_Bet);
         menuaffihce->addAction(actionopenRange);
         menuplaying->addAction(actionrange_2);
 
@@ -124,6 +128,7 @@ public:
         actionDiagnostic->setText(QCoreApplication::translate("MainWindow", "Diagnostic", nullptr));
         actionopenRange->setText(QCoreApplication::translate("MainWindow", "openRange", nullptr));
         actionrange_2->setText(QCoreApplication::translate("MainWindow", "range", nullptr));
+        actionDiag_Bet->setText(QCoreApplication::translate("MainWindow", "Diag Bet", nullptr));
         menufile->setTitle(QCoreApplication::translate("MainWindow", "file", nullptr));
         menuScanner->setTitle(QCoreApplication::translate("MainWindow", "Scanner", nullptr));
         menuaffihce->setTitle(QCoreApplication::translate("MainWindow", "affihce", nullptr));

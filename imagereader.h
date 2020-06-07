@@ -36,6 +36,7 @@ private:
     bool init;
     QTimer  *refrechTimer;
     friend class DiagnosticScanner;
+    friend class DiagReadBet;
     QImage  card1;
     QImage  card2;
     QPixmap pixEcran;
@@ -43,6 +44,7 @@ private:
     QList<QPair<QImage,  QString>> strIm;
     QList<QPair<QImage, int>> intIm;
     e_position                      lastPos;
+    QMap<e_position, QImage>        imBet;
     QMap<e_position, unsigned int>  pixBoardPosition;
     QMap<e_position, unsigned int>  pixPosition;
     QMap<e_position, QPoint> posPixel;
@@ -52,6 +54,7 @@ public:
     ~ImageReader();
     Card            readCard(QImage card);
     Hand            readHand();
+    bool            readValidHand();
     e_position      readPosition();
     void            initPixBoardPosition(int nbJoueur = 6);
     bool            exist(QImage card);
@@ -65,6 +68,7 @@ public slots:
     void readInfo();
 signals:
     void newHand(Hand newHand, e_position newPosition = NULLpos);
+    void refresh();
 
 private:
     void            fillListImgCard(QString folder);
@@ -80,7 +84,7 @@ private:
 
 };
 
-class DiagnosticScanner : public QWidget
+class    DiagnosticScanner : public QWidget
 {
     Q_OBJECT
 private:
@@ -101,9 +105,9 @@ private:
     QPushButton                 *btShowPixPox;
     Hand                        lastHand;
     e_position                  lastPosition;
-    int                         nbReRead;
+    int                         nbRead;
     QLabel                      *labLastHand;
-    QLabel                      *labNbReRead;
+    QLabel                      *labNbRead;
 public:
     DiagnosticScanner(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
     ~DiagnosticScanner();

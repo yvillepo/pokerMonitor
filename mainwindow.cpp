@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "range_view.h"
 #include "rangeviewwidget.h"
+#include "form.h"
+#include "diagreadbet.h"
 #include <QString>
 #include <QtWidgets>
 #include <string>
@@ -41,13 +43,8 @@ void MainWindow::on_actionrange_triggered()
 
 void MainWindow::lancerDiagnosticReader()
 {
-    if (!diag)
-    {
-        diag = new DiagnosticScanner(this, Qt::Window);
-        diag->setAttribute(Qt::WA_DeleteOnClose);
-        connect(diag, SIGNAL(deleteSignal()), this, SLOT(diagScrandeleted()));
-    }
-    diag->show();
+     Form *f = new Form(this);
+     f->show();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -99,4 +96,10 @@ void MainWindow::rangeWhilePlaying()
 {
     preflopHelper = new PreflopHelperWidget();
     setCentralWidget(preflopHelper);
+}
+
+void MainWindow::on_actionDiag_Bet_triggered()
+{
+    DiagReadBet *diag = new DiagReadBet(this);
+    diag->show();
 }

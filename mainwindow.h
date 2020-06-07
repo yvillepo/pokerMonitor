@@ -33,6 +33,7 @@ private slots:
     void diagScrandeleted();
     void afficheOpenRange();
     void rangeWhilePlaying();
+    void on_actionDiag_Bet_triggered();
 };
 
 #endif // MAINWINDOW_H

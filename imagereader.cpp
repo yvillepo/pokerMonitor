@@ -57,29 +57,10 @@ void    ImageReader::readInfo()
     if (pos != lastPos)
     {
         lastPos = pos;
-        qDebug() << "nouvelle Position " + stringPos(pos)  << endl;
-        if (pos != NULLpos)
-        {
-            stop();
-            int tryReadHand = 5;
-            std::this_thread::sleep_for(std::chrono::milliseconds(1500));
-            refrechEcran();
-            Hand h = readHand();
-            qDebug() << " main : " + h.getStrHand() << endl;
-            while (!h.isValid() && tryReadHand)
-            {
-                qDebug() << " main : " + h.getStrHand() << endl;
-                if (!h.isValid())
-                    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                tryReadHand--;
-                refrechEcran();
-                h = readHand();
-            }
-            if (h.isValid())
-                emit newHand(h, pos);
-            start();
-        }
+        readValidHand();
     }
+    emit refresh();
+
 }
 
 bool    ImageReader::exist(QImage cardIm)
@@ -99,6 +80,38 @@ Hand ImageReader::readHand()
     card1 = scan(543 + 8,555 + 10, 77 - (77 - 28) - 2,45 - (45 - 28) - 2);
     card2  = scan(623 + 8,555 + 10,77 - (77 - 28) - 2,45 - (45 - 28) - 2);
     return Hand(readCard(card1), readCard(card2));
+}
+
+bool ImageReader::readValidHand() // la position
+{
+    e_position pos = lastPos; //effet du a la recopie dans une nouvelle fonction (enciennement dans  read Info)
+    bool handValid = false;
+    qDebug() << "nouvelle Position " + stringPos(pos)  << endl;
+    if (pos != NULLpos)
+    {
+        stop();
+        int tryReadHand = 5;
+        std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+        refrechEcran();
+        Hand h = readHand();
+        qDebug() << " main : " + h.getStrHand() << endl;
+        while (!h.isValid() && tryReadHand)
+        {
+            qDebug() << " main : " + h.getStrHand() << endl;
+            if (!h.isValid())
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            tryReadHand--;
+            refrechEcran();
+            h = readHand();
+        }
+        if (h.isValid())
+        {
+            handValid = true;
+            emit newHand(h, pos);
+        }
+        start();
+    }
+    return handValid;
 }
 
 int ImageReader::readNumber(QImage number)
@@ -225,7 +238,7 @@ DiagnosticScanner::DiagnosticScanner(QWidget *parent, Qt::WindowFlags f) :
     diagnostic(false),
     boolShowPixPox(false),
     labImC1(4, nullptr), labImC2(4, nullptr), labStrCart(4, nullptr),
-    nbReRead(0),
+    nbRead(0),
     lastHand(Card(), Card()), lastPosition(NULLpos),
     refrechTimer(new QTimer(this))
 {
@@ -279,9 +292,9 @@ DiagnosticScanner::DiagnosticScanner(QWidget *parent, Qt::WindowFlags f) :
     /**************************LastHand******************************/
     QHBoxLayout *layLastHand = new QHBoxLayout(gbLastHand);
     labLastHand = new QLabel("Last Hand", this);
-    labNbReRead = new QLabel("nbReRead", this);
+    labNbRead = new QLabel("nbReRead", this);
     layLastHand->addWidget(labLastHand);
-    layLastHand->addWidget(labNbReRead);
+    layLastHand->addWidget(labNbRead);
     /****************************************************************/
     mainBoxLayout->addWidget(hand, 0 , 0, 1, 1);
     mainBoxLayout->addWidget(position, 0, 1, 1, 1);
@@ -333,14 +346,11 @@ void    DiagnosticScanner::newHand()
 
 void    DiagnosticScanner::updateLastHand(Hand newHand, e_position newPosition)
 {
-    if (lastHand == newHand && lastPosition == newPosition)
-    {
-        labNbReRead->setNum(++nbReRead);
-        return ;
-    }
-    nbReRead = 0;
+
+    labNbRead->setNum(++nbRead);
+
     labLastHand->setText(newHand.str_hand + " " + stringPos(newPosition));
-    labNbReRead->setNum(nbReRead);
+    labNbRead->setNum(nbRead);
 }
 
 void    DiagnosticScanner::updatePosition()
