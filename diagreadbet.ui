@@ -30,13 +30,13 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -129,23 +129,15 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="tabOpt">
       <attribute name="title">
        <string>Tab 2</string>
       </attribute>
-      <widget class="QLabel" name="label_2">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>220</y>
-         <width>47</width>
-         <height>14</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>tab  2</string>
-       </property>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QTableView" name="tableView"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

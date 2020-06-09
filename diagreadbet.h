@@ -14,6 +14,7 @@ class DiagReadBet : public QWidget
 
 public:
     explicit DiagReadBet(QWidget *parent = nullptr);
+
     ~DiagReadBet();
 
 public slots:
@@ -24,6 +25,7 @@ private slots:
 private:
     Ui::diagReadBet *ui;
     ImageReader *imRead;
+    ImOption    *imOpt;
     bool        run;
 
 };

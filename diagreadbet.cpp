@@ -10,6 +10,9 @@ DiagReadBet::DiagReadBet(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowFlag(Qt::Window);
     this->setAttribute(Qt::WA_DeleteOnClose);
+    imOpt = new ImOption();
+    ImOptionModel *optMod = new ImOptionModel(imOpt, this);
+    ui->tableView->setModel(optMod);
     connect(imRead, &ImageReader::refresh, this, &DiagReadBet::updateLabel);
 }
 

@@ -13,8 +13,15 @@
 #include <QBoxLayout>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QAbstractTableModel>
 
 using namespace std;
+
+#define POSX 198
+#define POSY 23
+#define SIZEX 1242
+#define SIZEY 877
+
 
 #define  PIXUTG    4291048756
 #define  PIXMP     4290983220
@@ -29,9 +36,54 @@ typedef enum xfct{
     Rcard,
 } typeReader;
 
+class ImOption {
+public:
+    ImOption (int nbJoueur = 6,
+              QRect screenRect = QRect(POSX, POSY, SIZEX, SIZEY),
+              QRect card1Rect = QRect(543 + 8,555 + 10, 77 - (77 - 28) - 2,45 - (45 - 28) - 2),
+              QRect car2Rect = QRect(623 + 8,555 + 10,77 - (77 - 28) - 2,45 - (45 - 28) - 2),
+              QList<QPoint> posPix= {QPoint(978, 300), QPoint(917, 504), QPoint(504, 549), QPoint(258, 416), QPoint(394, 236), QPoint(676, 230)},
+              QList<QRect> betRect = {QRect(0,0,0,0), QRect(1,1,1,1), QRect(2,2,2,2), QRect(3,3,3,3), QRect(4,4,4,4), QRect(5,5,5,5)});
+public:
+    int                         nb_joueur;
+    QRect                       screenRect;
+    QRect                       card1Rect;
+    QRect                       card2Rect;
+    QList<QPoint>               posPixel;
+    QList<QRect>                betRect;
+};
+
+class ImOptionModel : public QAbstractTableModel
+{
+public:
+    explicit ImOptionModel(QObject *parent = nullptr);
+    explicit ImOptionModel(ImOption *imOpt ,QObject *parent = nullptr);
+
+    // QAbstractItemModel interface
+public:
+    int rowCount(const QModelIndex &parent) const;
+    int columnCount(const QModelIndex &parent) const;
+    QVariant data(const QModelIndex &index, int role) const;
+    bool setData(const QModelIndex &index, const QVariant &value, int role);
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+    QVariant    displayRect(const QRect rect, int column) const;
+private:
+    ImOption *imOpt;
+};
+
 class ImageReader : public QObject
 {
     Q_OBJECT
+
+    struct option {
+        QRect                       screenRect;
+        QRect                       card1Rect;
+        QRect                       car2Rect;
+        QMap<e_position, QPoint>    posPixel;
+        QMap<e_position, QRect>     betRect;
+    } opt;
+
 private:
     bool init;
     QTimer  *refrechTimer;
