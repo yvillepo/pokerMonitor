@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "imagereader.h"
+#include "ImRead/imagereader.h"
+#include "ImRead/diagnosticscanner.h"
 #include <QStackedWidget>
 #include "myopenrange.h"
 #include "preflophelperwidget.h"

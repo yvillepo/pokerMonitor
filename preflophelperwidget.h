@@ -2,7 +2,7 @@
 #define PREFLOPHELPERWIDGET_H
 
 #include "util.h"
-#include "imagereader.h"
+#include "ImRead/imagereader.h"
 #include "myopenrange.h"
 #include <QStackedWidget>
 #include <QWidget>

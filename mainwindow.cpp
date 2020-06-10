@@ -3,14 +3,16 @@
 #include "range_view.h"
 #include "rangeviewwidget.h"
 #include "form.h"
-#include "diagreadbet.h"
+#include "ImRead/diagreadbet.h"
 #include <QString>
-#include <QtWidgets>
+#include <QWidget>
 #include <string>
 #include <iostream>
 #include <fstream>
 #include "treerangesmodel.h"
 #include <QTreeView>
+#include <QComboBox>
+#include <QDockWidget>
 
 using namespace std;
 
@@ -43,8 +45,10 @@ void MainWindow::on_actionrange_triggered()
 
 void MainWindow::lancerDiagnosticReader()
 {
-     Form *f = new Form(this);
-     f->show();
+     diag = new DiagnosticScanner(this);
+     diag->setAttribute(Qt::WA_DeleteOnClose);
+     diag->setWindowFlag(Qt::Window);
+     diag->show();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

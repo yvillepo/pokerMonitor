@@ -27,14 +27,16 @@ CONFIG += c++11
 SOURCES += \
     calcul/calcul.cpp \
     card.cpp \
-    diagreadbet.cpp \
+    ImRead/diagreadbet.cpp \
     enregistreur.cpp \
-    form.cpp \
     hand.cpp \
     hand_view.cpp \
     handviewitem.cpp \
     handviewwidget.cpp \
-    imagereader.cpp \
+    ImRead/diagnosticscanner.cpp \
+    ImRead/imagereader.cpp \
+    ImRead/imoption.cpp \
+    ImRead/imoptionmodel.cpp \
     lecteur.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -59,14 +61,16 @@ HEADERS += \
     SQL.h \
     calcul/calcul.h \
     card.h \
-    diagreadbet.h \
+    ImRead/diagreadbet.h \
     enregistreur.h \
-    form.h \
     hand.h \
     hand_view.h \
     handviewitem.h \
     handviewwidget.h \
-    imagereader.h \
+    ImRead/diagnosticscanner.h \
+    ImRead/imagereader.h \
+    ImRead/imoption.h \
+    ImRead/imoptionmodel.h \
     lecteur.h \
     mainwindow.h \
     mesranges.h \
@@ -86,8 +90,7 @@ HEADERS += \
     util.h
 
 FORMS += \
-        diagreadbet.ui \
-        form.ui \
+        ImRead/diagreadbet.ui \
         lecteur.ui \
         mainwindow.ui \
         range_view.ui
