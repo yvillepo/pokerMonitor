@@ -14,6 +14,7 @@ class DiagReadBet : public QWidget
 
 public:
     explicit DiagReadBet(QWidget *parent = nullptr);
+    DiagReadBet(ImageReader *imR, QWidget *parent = nullptr);
 
     ~DiagReadBet();
 
@@ -30,6 +31,7 @@ private:
     ImOption    *imOpt;
     bool        run;
     int         nbScreen;
+    bool        deleteImRead;
 
 };
 

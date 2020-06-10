@@ -7,13 +7,18 @@
 #include <thread>
 #include <chrono>
 
+ImOption *ImageReader::getOption() const
+{
+    return option;
+}
+
 ImageReader::ImageReader(QString folder, typeReader type, uint timeRefrech):
     init(false),
     refrechTimer(new QTimer(this)),
     lastPos(NULLpos)
 {
-    option = ImOption();
-    for (int i = 0; i < option.nb_joueur; i++) lStack.append(0);
+    option = new ImOption();
+    for (int i = 0; i < option->getNbJoueur(); i++) lStack.append(0);
     if (type == Rcard)
         fillListImgCard(folder);
     refrechEcran();
@@ -24,7 +29,7 @@ ImageReader::ImageReader(QString folder, typeReader type, uint timeRefrech):
 
 ImageReader::~ImageReader()
 {
-    qDebug() << "Imagereader supr" << endl;
+    qDebug() << "Imagereader supr";
 }
 
 Card    ImageReader::readCard(QImage cardIm)
@@ -42,7 +47,8 @@ Card    ImageReader::readCard(QImage cardIm)
 void    ImageReader::refrechEcran()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
-    pixEcran = screen->grabWindow(0, POSX, POSY, SIZEX, SIZEY);
+    QRect rW = option->getScreenRect();
+    pixEcran = screen->grabWindow(0, rW.x(), rW.y(), rW.width(), rW.height());
     imEcran = pixEcran.toImage();
 }
 
@@ -74,8 +80,8 @@ bool    ImageReader::exist(QImage cardIm)
 
 Hand ImageReader::readHand()
 {
-    card1 = scan(option.card1Rect);
-    card2  = scan(option.card2Rect);
+    card1 = scan(option->card1Rect);
+    card2  = scan(option->card2Rect);
     return Hand(readCard(card1), readCard(card2));
 }
 
@@ -118,7 +124,7 @@ int ImageReader::readNumber(QImage number)
 
 void ImageReader::readStacks()
 {
-    lStack.replace(0, readStack(scan(option.betRect.at(0))));
+    lStack.replace(0, readStack(scan(*option->betRect.at(0))));
 }
 
 float ImageReader::readStack(QImage const stack)
@@ -211,10 +217,11 @@ e_position ImageReader::readPosition()
 
 void    ImageReader::initPixBoardPosition(int nbJoueur)
 {
-    for (int i = 0; i < option.nb_joueur; i++)
+    Q_UNUSED(nbJoueur);
+    for (int i = 0; i < option->getNbJoueur(); i++)
     {
-        posPixel[static_cast<e_position>(i)] = option.posPixel.at(i);
-        pixBoardPosition[static_cast<e_position>(i)] = imEcran.pixel(option.posPixel.at(i));
+        posPixel[static_cast<e_position>(i)] = *option->posPixel.at(i);
+        pixBoardPosition[static_cast<e_position>(i)] = imEcran.pixel(*option->posPixel.at(i));
     }
 }
 

@@ -37,7 +37,7 @@ class ImageReader : public QObject
     Q_OBJECT
 private:
     bool init;
-    ImOption option;
+    ImOption *option;
     QTimer  *refrechTimer;
     friend class DiagnosticScanner;
     friend class DiagReadBet;
@@ -68,6 +68,8 @@ public:
     float           readStack(QImage stack);
     QImage          scan(int x, int y, int width, int height);
     QImage          scan(QRect rect);
+    ImOption *getOption() const;
+
 public slots:
     void refrechEcran();
     void start(int time = 1000); // a revoit (t = 0 ? )

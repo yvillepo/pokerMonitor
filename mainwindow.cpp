@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 #include "range_view.h"
 #include "rangeviewwidget.h"
-#include "form.h"
 #include "ImRead/diagreadbet.h"
 #include <QString>
 #include <QWidget>
@@ -40,7 +39,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionrange_triggered()
 {
-    qDebug() << "action trigered" << endl;
+    qDebug() << "action trigered" ;
 }
 
 void MainWindow::lancerDiagnosticReader()

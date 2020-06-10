@@ -9,12 +9,31 @@ DiagReadBet::DiagReadBet(QWidget *parent) :
     ui(new Ui::diagReadBet),
     imRead(new ImageReader()),
     run(false),
-    nbScreen(0)
+    nbScreen(0),
+    deleteImRead(true)
 {
     ui->setupUi(this);
     this->setWindowFlag(Qt::Window);
     this->setAttribute(Qt::WA_DeleteOnClose);
-    imOpt = new ImOption();
+    imOpt = imRead->getOption();
+    ImOptionModel *optMod = new ImOptionModel(imOpt, this);
+    ui->tableView->setModel(optMod);
+    connect(imRead, &ImageReader::refresh, this, &DiagReadBet::updateLabel);
+    updateLabel();
+}
+
+DiagReadBet::DiagReadBet(ImageReader *imR, QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::diagReadBet),
+    imRead(imR),
+    run(false),
+    nbScreen(0),
+    deleteImRead(false)
+{
+    ui->setupUi(this);
+    this->setWindowFlag(Qt::Window);
+    this->setAttribute(Qt::WA_DeleteOnClose);
+    imOpt = imRead->getOption();
     ImOptionModel *optMod = new ImOptionModel(imOpt, this);
     ui->tableView->setModel(optMod);
     connect(imRead, &ImageReader::refresh, this, &DiagReadBet::updateLabel);
@@ -24,7 +43,8 @@ DiagReadBet::DiagReadBet(QWidget *parent) :
 DiagReadBet::~DiagReadBet()
 {
     delete ui;
-    delete imRead;
+    if (deleteImRead)
+        delete imRead;
 }
 
 void DiagReadBet::updateLabel()
@@ -32,12 +52,12 @@ void DiagReadBet::updateLabel()
     ui->scanImage->setPixmap(imRead->pixEcran.scaled(ui->scanImage->size(),
                              Qt::KeepAspectRatio,
                              Qt::SmoothTransformation));
-    QImage stack = imRead->scan(imRead->option.betRect.at(0));
+    QImage stack = imRead->scan(*(imRead->option->betRect.at(0)));
     ui->v1->setPixmap(QPixmap::fromImage(stack.copy(18, 13, 6, 3)).scaled(ui->v1->size()));
     ui->v2->setPixmap(QPixmap::fromImage(stack.copy(24, 13, 6, 3)).scaled(ui->v1->size()));
     ui->v3->setPixmap(QPixmap::fromImage(stack.copy(30, 13, 6, 3)).scaled(ui->v1->size()));
     ui->imBetSb->setPixmap(QPixmap(":/virgule.png").scaled(ui->v1->size()));
-    ui->stack1->setPixmap(QPixmap::fromImage(imRead->scan(imRead->option.betRect.at(0))));
+    ui->stack1->setPixmap(QPixmap::fromImage(imRead->scan(*(imRead->option->betRect.at(0)))));
 }
 
 void DiagReadBet::on_btStartStrop_clicked()
