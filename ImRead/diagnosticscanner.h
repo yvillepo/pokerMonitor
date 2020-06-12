@@ -30,7 +30,7 @@ private:
     QLabel                      *labLastHand;
     QLabel                      *labNbRead;
 public:
-    DiagnosticScanner(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
+    DiagnosticScanner(ImageReader *im,QWidget *parent = nullptr, Qt::WindowFlags f = 0);
     ~DiagnosticScanner();
 public slots:
     void    startDiagnostic();

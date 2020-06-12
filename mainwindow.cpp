@@ -45,7 +45,7 @@ void MainWindow::on_actionrange_triggered()
 
 void MainWindow::lancerDiagnosticReader()
 {
-     diag = new DiagnosticScanner(this);
+     diag = new DiagnosticScanner(imRead, this);
      diag->setAttribute(Qt::WA_DeleteOnClose);
      diag->setWindowFlag(Qt::Window);
      diag->show();

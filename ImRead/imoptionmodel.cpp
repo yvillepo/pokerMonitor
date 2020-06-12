@@ -1,10 +1,5 @@
 #include "imoptionmodel.h"
 
-ImOptionModel::ImOptionModel(QObject *parent) : QAbstractTableModel(parent)
-{
-    imOpt = new ImOption();
-}
-
 ImOptionModel::ImOptionModel(ImageReader *imRead, QObject *parent) : QAbstractTableModel(parent)
 {
     this->imRead = imRead;
@@ -29,10 +24,13 @@ QVariant ImOptionModel::data(const QModelIndex &index, int role) const
         return QVariant();
     if (role == Qt::DecorationRole)
     {
+        qDebug() << "here";
         if (index.row() == 0 && index.column() == 1)
         {
+             qDebug() << "here2";
             return QPixmap::fromImage(imRead->card1);
         }
+
     }
     if(role == Qt::DisplayRole || role == Qt::EditRole){
         switch (index.row()) {

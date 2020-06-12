@@ -49,6 +49,7 @@ void    ImageReader::refrechEcran()
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect rW = option->getScreenRect();
     pixEcran = screen->grabWindow(0, rW.x(), rW.y(), rW.width(), rW.height());
+    pixEcran = pixEcran.scaled(SIZEX, SIZEY);
     imEcran = pixEcran.toImage();
 }
 

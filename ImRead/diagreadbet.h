@@ -30,6 +30,9 @@ private:
     bool        run;
     int         nbScreen;
     bool        deleteImRead;
+    QPixmap     screenEdit;
+
+    void        drawScreenPixmap();
 
 };
 

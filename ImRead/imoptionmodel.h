@@ -1,8 +1,8 @@
 #ifndef IMOPTIONMODEL_H
 #define IMOPTIONMODEL_H
 
-#include <QAbstractTableModel>
 #include "imagereader.h"
+#include <QAbstractTableModel>
 
 class ImOptionModel : public QAbstractTableModel
 {
@@ -21,7 +21,6 @@ public:
 private:
     ImOption        *imOpt;
     ImageReader     *imRead;
-    ExistClass            test;
 };
 
 #endif // IMOPTIONMODEL_H

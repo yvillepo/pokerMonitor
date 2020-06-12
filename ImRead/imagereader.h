@@ -6,7 +6,6 @@
 #include "hand.h"
 #include "util.h"
 #include "imoption.h"
-#include "imoptionmodel.h"
 #include <QVector>
 #include <QImage>
 #include <QPixmap>
@@ -31,10 +30,6 @@ typedef enum xfct{
     Rstack,
     Rcard,
 } typeReader;
-
-class ExistClass {
-    ExistClass();
-};
 
 class ImageReader : public QObject
 {

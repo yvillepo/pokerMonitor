@@ -1,9 +1,9 @@
 #include "diagnosticscanner.h"
 #include <QGroupBox>
 
-DiagnosticScanner::DiagnosticScanner(QWidget *parent, Qt::WindowFlags f) :
+DiagnosticScanner::DiagnosticScanner(ImageReader *im, QWidget *parent, Qt::WindowFlags f) :
     QWidget(parent, f),
-    imRead(new ImageReader()),
+    imRead(im),
     mainBoxLayout(new QGridLayout(this)),
     nbHandRead(0),
     diagnostic(false),

@@ -8,6 +8,7 @@
 
 #include <QRect>
 #include <QList>
+#include <QVariant>
 
 class ImOption {
 public:
@@ -32,5 +33,7 @@ public:
     int     getNbJoueur() const;
     QRect   getScreenRect() const;
 };
+
+Q_DECLARE_METATYPE(ImOption);
 
 #endif // IMOPTION_H
