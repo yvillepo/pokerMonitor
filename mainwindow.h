@@ -7,6 +7,7 @@
 #include <QStackedWidget>
 #include "myopenrange.h"
 #include "preflophelperwidget.h"
+#include "imagereader.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +23,7 @@ private:
     QWidget             *wOpenRange;
     PreflopHelperWidget *preflopHelper;
     myOpenRange         *openRange;
+    ImageReader        *imRead;
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);

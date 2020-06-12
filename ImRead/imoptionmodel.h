@@ -1,16 +1,13 @@
 #ifndef IMOPTIONMODEL_H
 #define IMOPTIONMODEL_H
 
-#include "imoption.h"
 #include <QAbstractTableModel>
+#include "imagereader.h"
 
 class ImOptionModel : public QAbstractTableModel
 {
 public:
-    explicit ImOptionModel(QObject *parent = nullptr);
-    explicit ImOptionModel(ImOption *imOpt ,QObject *parent = nullptr);
-
-    // QAbstractItemModel interface
+    ImOptionModel(ImageReader *imRead ,QObject *parent = nullptr);
 public:
     int rowCount(const QModelIndex &parent) const;
     int columnCount(const QModelIndex &parent) const;
@@ -22,7 +19,9 @@ public:
     QVariant    displayRect(const QRect rect, int column) const;
     void        EditRect(QRect *rect, int column, int value);
 private:
-    ImOption *imOpt;
+    ImOption        *imOpt;
+    ImageReader     *imRead;
+    ExistClass            test;
 };
 
 #endif // IMOPTIONMODEL_H

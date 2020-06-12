@@ -21,7 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     diag(nullptr),
     wOpenRange(nullptr),
-    preflopHelper(nullptr)
+    preflopHelper(nullptr),
+    imRead(new ImageReader())
 {
     ui->setupUi(this);
     connect(ui->actionDiagnostic, &QAction::triggered,
@@ -103,6 +104,6 @@ void MainWindow::rangeWhilePlaying()
 
 void MainWindow::on_actionDiag_Bet_triggered()
 {
-    DiagReadBet *diag = new DiagReadBet(this);
+    DiagReadBet *diag = new DiagReadBet(imRead, this);
     diag->show();
 }

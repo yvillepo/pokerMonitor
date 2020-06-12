@@ -32,6 +32,10 @@ typedef enum xfct{
     Rcard,
 } typeReader;
 
+class ExistClass {
+    ExistClass();
+};
+
 class ImageReader : public QObject
 {
     Q_OBJECT
@@ -41,6 +45,7 @@ private:
     QTimer  *refrechTimer;
     friend class DiagnosticScanner;
     friend class DiagReadBet;
+    friend class ImOptionModel;
     QImage  card1;
     QImage  card2;
     QPixmap pixEcran;

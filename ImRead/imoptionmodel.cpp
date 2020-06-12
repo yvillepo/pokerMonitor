@@ -5,9 +5,10 @@ ImOptionModel::ImOptionModel(QObject *parent) : QAbstractTableModel(parent)
     imOpt = new ImOption();
 }
 
-ImOptionModel::ImOptionModel(ImOption *imOpt, QObject *parent) : QAbstractTableModel(parent)
+ImOptionModel::ImOptionModel(ImageReader *imRead, QObject *parent) : QAbstractTableModel(parent)
 {
-    this->imOpt = imOpt;
+    this->imRead = imRead;
+    this->imOpt = imRead->getOption();
 }
 
 int ImOptionModel::rowCount(const QModelIndex &parent) const
@@ -26,6 +27,13 @@ QVariant ImOptionModel::data(const QModelIndex &index, int role) const
 {
     if (index.row() < 0)
         return QVariant();
+    if (role == Qt::DecorationRole)
+    {
+        if (index.row() == 0 && index.column() == 1)
+        {
+            return QPixmap::fromImage(imRead->card1);
+        }
+    }
     if(role == Qt::DisplayRole || role == Qt::EditRole){
         switch (index.row()) {
         case 0:

@@ -4,24 +4,6 @@
 #include <QMessageBox>
 #include <QDateTime>
 
-DiagReadBet::DiagReadBet(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::diagReadBet),
-    imRead(new ImageReader()),
-    run(false),
-    nbScreen(0),
-    deleteImRead(true)
-{
-    ui->setupUi(this);
-    this->setWindowFlag(Qt::Window);
-    this->setAttribute(Qt::WA_DeleteOnClose);
-    imOpt = imRead->getOption();
-    ImOptionModel *optMod = new ImOptionModel(imOpt, this);
-    ui->tableView->setModel(optMod);
-    connect(imRead, &ImageReader::refresh, this, &DiagReadBet::updateLabel);
-    updateLabel();
-}
-
 DiagReadBet::DiagReadBet(ImageReader *imR, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::diagReadBet),
@@ -33,8 +15,7 @@ DiagReadBet::DiagReadBet(ImageReader *imR, QWidget *parent) :
     ui->setupUi(this);
     this->setWindowFlag(Qt::Window);
     this->setAttribute(Qt::WA_DeleteOnClose);
-    imOpt = imRead->getOption();
-    ImOptionModel *optMod = new ImOptionModel(imOpt, this);
+    ImOptionModel *optMod = new ImOptionModel(imRead, this);
     ui->tableView->setModel(optMod);
     connect(imRead, &ImageReader::refresh, this, &DiagReadBet::updateLabel);
     updateLabel();
@@ -80,8 +61,9 @@ void DiagReadBet::on_btTakeScreen_clicked()
 {
     const QString format = "png";
 
-    QString initialPath = "/Users/yann/dbpoker/Screen";
-    const QString fileName = initialPath + "/" + QDateTime::currentDateTime().toString();
+    QString initialPath = "C:/Users/Megaport/Desktop/dbPoker/Screen";
+    const QString fileName = initialPath +"/" + QString::number(imOpt->getScreenRect().width()) + "_" +
+            QString::number(imOpt->getScreenRect().height()) + "_" + QString::number(nbScreen);
     if (!imRead->pixEcran.save(fileName + ".png")) {
         QMessageBox::warning(this, tr("Save Error"), tr("The image could not be saved to \"%1\".")
                              .arg(QDir::toNativeSeparators(fileName + ".png")));

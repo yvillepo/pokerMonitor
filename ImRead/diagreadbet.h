@@ -13,9 +13,7 @@ class DiagReadBet : public QWidget
     Q_OBJECT
 
 public:
-    explicit DiagReadBet(QWidget *parent = nullptr);
     DiagReadBet(ImageReader *imR, QWidget *parent = nullptr);
-
     ~DiagReadBet();
 
 public slots:

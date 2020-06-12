@@ -155,7 +155,7 @@ typedef struct s_hand{
         int index_debut_name = line.indexOf("to ") + 3;
         joueur = line.mid(index_debut_name);
         joueur = joueur.mid(0, 3);
-        qDebug() << "nom joueur " << joueur << endl;
+        qDebug() << "nom joueur " << joueur;
         c[0] = s_card(line.mid(line.indexOf('[') + 1, 2));
         c[1] = s_card(line.mid(line.indexOf(']') - 2, 2));
         str_hand = c[0].str + c[1].str;
